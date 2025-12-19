@@ -1,0 +1,12 @@
+Package: rmlirdsl
+Type: Package
+Title: R DSL for MLIR R Dialect
+Version: 0.1.0
+Authors@R: person("R", "DSL", email = "r-dsl@example.com", role = c("aut", "cre"))
+Description: Build a small AST in R and lower it to an MLIR dialect with
+    support for vectors and matrices as tensors.
+License: MIT
+Depends: R (>= 3.5.0)
+Imports: jsonlite, Rcpp
+Suggests: testthat (>= 3.0.0)
+Config/testthat/edition: 3

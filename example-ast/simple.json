@@ -1,0 +1,35 @@
+{
+  "type": "Module",
+  "functions": [
+    {
+      "type": "Function",
+      "name": "addmul",
+      "params": [
+        {"name": "x", "type": "f64"},
+        {"name": "y", "type": "f64"}
+      ],
+      "returnType": "f64",
+      "body": [
+        {
+          "type": "Assign",
+          "name": "z",
+          "value": {
+            "type": "Binary",
+            "op": "+",
+            "lhs": {"type": "Var", "name": "x"},
+            "rhs": {"type": "Var", "name": "y"}
+          }
+        },
+        {
+          "type": "Return",
+          "value": {
+            "type": "Binary",
+            "op": "*",
+            "lhs": {"type": "Var", "name": "z"},
+            "rhs": {"type": "Number", "value": 2.0}
+          }
+        }
+      ]
+    }
+  ]
+}

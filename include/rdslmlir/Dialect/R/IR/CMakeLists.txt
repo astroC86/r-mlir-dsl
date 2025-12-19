@@ -1,0 +1,6 @@
+set(LLVM_TARGET_DEFINITIONS ROps.td)
+mlir_tablegen(ROps.h.inc -gen-op-decls)
+mlir_tablegen(ROps.cpp.inc -gen-op-defs)
+mlir_tablegen(RDialect.h.inc -gen-dialect-decls)
+mlir_tablegen(RDialect.cpp.inc -gen-dialect-defs)
+add_public_tablegen_target(RTableGen)

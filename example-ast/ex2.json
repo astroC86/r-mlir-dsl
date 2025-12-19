@@ -1,0 +1,85 @@
+{
+    "type": "Module",
+    "functions": [
+      {
+        "type": "Function",
+        "name": "addmul",
+        "params": [
+          {
+            "name": "x",
+            "type": {
+              "type": "tensor",
+              "elem": "i32",
+              "shape": null,
+              "storage": "memref"
+            }
+          }
+        ],
+        "returnType": "i32",
+        "body": [
+          {
+            "type": "Return",
+            "value": {
+              "type": "Binary",
+              "op": "*",
+              "lhs": {
+                "type": "Binary",
+                "op": "+",
+                "lhs": {
+                  "type": "Index",
+                  "target": {
+                    "type": "Var",
+                    "name": "x"
+                  },
+                  "indices": [
+                    {
+                      "type": "Binary",
+                      "op": "-",
+                      "lhs": {
+                        "type": "Number",
+                        "value": 1,
+                        "dtype": "index"
+                      },
+                      "rhs": {
+                        "type": "Number",
+                        "value": 1,
+                        "dtype": "index"
+                      }
+                    }
+                  ]
+                },
+                "rhs": {
+                  "type": "Index",
+                  "target": {
+                    "type": "Var",
+                    "name": "x"
+                  },
+                  "indices": [
+                    {
+                      "type": "Binary",
+                      "op": "-",
+                      "lhs": {
+                        "type": "Number",
+                        "value": 2,
+                        "dtype": "index"
+                      },
+                      "rhs": {
+                        "type": "Number",
+                        "value": 1,
+                        "dtype": "index"
+                      }
+                    }
+                  ]
+                }
+              },
+              "rhs": {
+                "type": "Number",
+                "value": 2,
+                "dtype": "i32"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
