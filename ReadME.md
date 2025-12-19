@@ -4,7 +4,7 @@ rmlirdsl is a lightweight R‑centric DSL that emits a JSON AST from idiomatic R
 expressions, lowers it to an MLIR dialect, and then compiles/executed the lowered
 module on CPU (with OpenMP  support for `parallel = TRUE` loops). The project ships
 a runtime that exposes the MLIR-compiled functions through `.Call`, so you can
-pass and return native R vectors/matrices with very little ceremony.
+pass and return native R vectors/matrices as you would normally.
 
 ## Quick example
 
