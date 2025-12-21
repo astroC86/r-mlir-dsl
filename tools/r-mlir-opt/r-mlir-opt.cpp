@@ -1,4 +1,4 @@
-#include "rdslmlir/Conversion/RPasses.h"
+#include "rdslmlir/Conversion/RegisterAll.h"
 #include "rdslmlir/Dialect/R/IR/RDialect.h"
 #include "mlir/InitAllDialects.h"
 #include "mlir/InitAllPasses.h"

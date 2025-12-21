@@ -1,0 +1,23 @@
+{
+  "functions": [
+    {
+      "name": "add",
+      "params": [
+        {"name": "x", "type": "i32"},
+        {"name": "y", "type": "i32"}
+      ],
+      "returnType": "i32",
+      "body": [
+        {
+          "type": "Return",
+          "value": {
+            "type": "Binary",
+            "op": "+",
+            "lhs": {"type": "Var", "name": "x"},
+            "rhs": {"type": "Var", "name": "y"}
+          }
+        }
+      ]
+    }
+  ]
+}

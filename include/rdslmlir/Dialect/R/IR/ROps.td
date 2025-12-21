@@ -47,6 +47,22 @@ def R_DivOp : R_Op<"div", [NoMemoryEffect, SameOperandsAndResultType]> {
   let assemblyFormat = "$lhs `,` $rhs attr-dict `:` type($result)";
 }
 
+def R_MathOp : R_Op<"math", [NoMemoryEffect, SameOperandsAndResultType]> {
+  let summary = "R math unary op";
+  let arguments = (ins AnyType:$input, StrAttr:$kind,
+                       OptionalAttr<F64Attr>:$base,
+                       OptionalAttr<I64Attr>:$digits);
+  let results = (outs AnyType:$result);
+  let assemblyFormat = "$input attr-dict `:` type($result)";
+}
+
+def R_Math2Op : R_Op<"math2", [NoMemoryEffect, SameOperandsAndResultType]> {
+  let summary = "R math binary op";
+  let arguments = (ins AnyType:$lhs, AnyType:$rhs, StrAttr:$kind);
+  let results = (outs AnyType:$result);
+  let assemblyFormat = "$lhs `,` $rhs attr-dict `:` type($result)";
+}
+
 def R_LoadOp : R_Op<"load", [
     NoMemoryEffect,
     TypesMatchWith<"result type matches element type of 'memref'",

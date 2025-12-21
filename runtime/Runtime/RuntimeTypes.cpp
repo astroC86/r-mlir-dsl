@@ -49,7 +49,7 @@ void ensureStaticDim(int64_t expected, int64_t actual, const std::string &label)
 }
 
 SEXP ensureRType(SEXP sexp, SEXPTYPE type, bool expectMatrix, const std::string &label) {
-  if (TYPEOF(sexp) != type) Rcpp::stop("expected " + label);
+  if (TYPEOF(sexp) != static_cast<int>(type)) Rcpp::stop("expected " + label);
   if (expectMatrix && !Rf_isMatrix(sexp)) Rcpp::stop("expected " + label);
   if (!expectMatrix && Rf_isMatrix(sexp)) Rcpp::stop("expected " + label);
   return sexp;

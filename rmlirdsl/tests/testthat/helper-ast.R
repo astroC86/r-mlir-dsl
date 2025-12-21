@@ -1,7 +1,7 @@
 library(rmlirdsl)
 
 render_ast <- function(module) {
-  jsonlite::fromJSON(rmlir$render_json(module), simplifyVector = FALSE)
+  jsonlite::fromJSON(rmlir$internal$render_json(module), simplifyVector = FALSE)
 }
 
 first_function <- function(ast) {

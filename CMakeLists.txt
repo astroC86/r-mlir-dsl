@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 project(r-mlir LANGUAGES CXX C)
 
+enable_testing()
+
 find_package(MLIR REQUIRED CONFIG)
 find_package(LLVM REQUIRED CONFIG)
 

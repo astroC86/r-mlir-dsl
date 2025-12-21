@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 
-#include "rdslmlir/Conversion/RPasses.h"
+#include "rdslmlir/Conversion/Linalg/RToLinalgPass.h"
+#include "rdslmlir/Conversion/RegisterAll.h"
 #include "rdslmlir/Dialect/R/IR/RDialect.h"
 #include "rdslmlir/Dialect/R/IR/ROps.h"
 #include "rdslmlir/Runtime/RuntimeAstLowerer.h"
@@ -219,6 +220,7 @@ static std::unique_ptr<RuntimeHandle> compileModule(const std::string &json,
     pm.addPass(createConvertOpenMPToLLVMPass());
   }
   pm.addPass(createConvertIndexToLLVMPass());
+  pm.addPass(createConvertMathToLLVMPass());
   pm.addPass(createArithToLLVMConversionPass());
   pm.addPass(createFinalizeMemRefToLLVMConversionPass());
   pm.addPass(createConvertFuncToLLVMPass());
@@ -494,10 +496,17 @@ extern "C" SEXP rdslmlir_call(SEXP handle, SEXP args) {
 }
 
 extern "C" void R_init_rdslmlir_runtime(DllInfo *info) {
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
+#endif
   static const R_CallMethodDef callMethods[] = {
       {"rdslmlir_compile", (DL_FUNC)&rdslmlir_compile, 2},
       {"rdslmlir_call", (DL_FUNC)&rdslmlir_call, 2},
       {NULL, NULL, 0}};
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
 
   R_registerRoutines(info, NULL, callMethods, NULL, NULL);
   R_useDynamicSymbols(info, FALSE);

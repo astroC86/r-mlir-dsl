@@ -1,6 +1,5 @@
 set(RDSLMLIR_RUNTIME_SOURCES
   Execution/rdslmlir_runtime.cpp
-  Runtime/RuntimeAstLowerer.cpp
   Runtime/RuntimeTypes.cpp
 )
 
@@ -60,6 +59,10 @@ if (RDSLMLIR_RCPP_CPPFLAGS)
   target_compile_options(rdslmlir_runtime PRIVATE ${RDSLMLIR_RCPP_CPPFLAGS})
 endif()
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  target_compile_options(rdslmlir_runtime PRIVATE -Wno-cast-function-type -Wno-suggest-override)
+endif()
+
 set(RDSLMLIR_LINK_DIRS)
 set(RDSLMLIR_LINK_LIBS)
 set(RDSLMLIR_LINK_OPTIONS)
@@ -92,10 +95,12 @@ target_include_directories(rdslmlir_runtime PRIVATE
 )
 
 target_link_libraries(rdslmlir_runtime PRIVATE
+  rdslmlir_ast_lowerer
   RConversion
   RIR
   MLIRExecutionEngine
   MLIRExecutionEngineUtils
+  MLIRMathToLLVM
   MLIRRegisterAllDialects
   MLIRRegisterAllPasses
   MLIRIR
